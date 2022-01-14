@@ -1,0 +1,23 @@
+{
+  "name": "express-app",
+  "version": "1.0.0",
+  "description": "Express.js application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syauqeesy/sandbox.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Express.js"
+  ],
+  "author": "Ahmad Syauqi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syauqeesy/sandbox/issues"
+  },
+  "homepage": "https://github.com/syauqeesy/sandbox#readme"
+}
