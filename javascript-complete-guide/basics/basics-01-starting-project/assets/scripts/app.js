@@ -22,28 +22,29 @@ function createAndWriteLog (operator, resultBeforeCalc, calcNumber) {
 function add () {
   const enteredNumber = getUserNumberInput()
   const initialResult = currentResult
-  currentResult = currentResult + enteredNumber
+  currentResult += enteredNumber
+  // currentResult++
   createAndWriteLog('+', initialResult, enteredNumber)
 }
 
 function subtract () {
   const enteredNumber = getUserNumberInput()
   const initialResult = currentResult
-  currentResult = currentResult - enteredNumber
+  currentResult -= enteredNumber
   createAndWriteLog('-', initialResult, enteredNumber)
 }
 
 function multiply () {
   const enteredNumber = getUserNumberInput()
   const initialResult = currentResult
-  currentResult = currentResult * enteredNumber
+  currentResult *= enteredNumber
   createAndWriteLog('*', initialResult, enteredNumber)
 }
 
 function divide () {
   const enteredNumber = getUserNumberInput()
   const initialResult = currentResult
-  currentResult = currentResult / enteredNumber
+  currentResult /= enteredNumber
   createAndWriteLog('/', initialResult, enteredNumber)
 }
 
