@@ -1,13 +1,22 @@
 const defaultResult = 0
 let currentResult = defaultResult
 
+// This is a comment!
+// Another line
+
+/**
+ * This is also a comment
+ */
+
+// Gets input from input field
 function getUserNumberInput () {
   return parseInt(usrInput.value)
 }
 
+// Generates and write calculation log
 function createAndWriteLog (operator, resultBeforeCalc, calcNumber) {
   const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`
-  outputResult(currentResult, calcDescription)
+  outputResult(currentResult, calcDescription) // From vendor file
 }
 
 function add () {
