@@ -179,6 +179,12 @@ function healPlayerHandler () {
 }
 
 function printLogHandler() {
+  for (let i = 0; i < 5; i++) {
+    if (i === 3) {
+      continue
+    }
+    console.log(i)
+  }
   // for (let i = 0; i < 3; i++) {
   //   console.log('------')
   // }
