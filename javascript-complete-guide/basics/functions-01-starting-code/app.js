@@ -32,7 +32,7 @@ const getComputerChoice = () => {
 }
 
 const getWinner = (computerChoice, playerChoice) => 
-    computerChoice === playerSelection ?
+    computerChoice === playerChoice ?
       RESULT_DRAW :
       computerChoice === ROCK && playerChoice === PAPER ||
       computerChoice === PAPER && playerChoice === SCISSORS ||
@@ -61,5 +61,14 @@ startGameBtn.addEventListener('click', () => {
   const playerSelection = getPlayerChoice()
   const computerChoice = getComputerChoice()
   const winner = getWinner(computerChoice, playerSelection)
-  console.log(winner)
+  let message = `You picked ${playerSelection}, computer picked ${computerChoice}, therefore you `
+  if (winner === RESULT_DRAW) {
+    message += 'had a draw.'
+  } else if (winner === RESULT_PLAYER_WINS) {
+    message += 'won'
+  } else {
+    message += 'lost'
+  }
+
+  alert(message)
 })
