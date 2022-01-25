@@ -11,7 +11,7 @@ const RESULT_COMPUTER_WINS = 'COMPUTER_WINS'
 
 let gameIsRunning = false
 
-const getPlayerChoice = function () {
+const getPlayerChoice = () => {
   const selection = prompt(`${ROCK}, ${PAPER} or ${SCISSORS}?`, '').toUpperCase()
   if (selection !== ROCK && selection !== PAPER && selection !== SCISSORS) {
     alert(`Invalid choice! We chose ${DEFAULT_USER_CHOICE} for you!`)
@@ -20,7 +20,7 @@ const getPlayerChoice = function () {
   return selection
 }
 
-const getComputerChoice = function () {
+const getComputerChoice = () => {
   const randomValue = Math.random() 
   if (randomValue < .34) {
     return ROCK
@@ -31,21 +31,28 @@ const getComputerChoice = function () {
   }
 }
 
-const getWinner = function (computerChoice, playerChoice) {
-  if (computerChoice === playerChoice) {
-    return RESULT_DRAW
-  } else if (
-    computerChoice === ROCK && playerChoice === PAPER ||
-    computerChoice === PAPER && playerChoice === SCISSORS ||
-    computerChoice === SCISSORS && playerChoice === ROCK
-  ) {
-    return RESULT_PLAYER_WINS
-  } else {
-    return RESULT_COMPUTER_WINS
-  }
-}
+const getWinner = (computerChoice, playerChoice) => 
+    computerChoice === playerSelection ?
+      RESULT_DRAW :
+      computerChoice === ROCK && playerChoice === PAPER ||
+      computerChoice === PAPER && playerChoice === SCISSORS ||
+      computerChoice === SCISSORS && playerChoice === ROCK ?
+        RESULT_PLAYER_WINS : RESULT_COMPUTER_WINS
 
-startGameBtn.addEventListener('click', function () {
+  // if (computerChoice === playerChoice) {
+  //   return RESULT_DRAW
+  // } else if (
+  //   computerChoice === ROCK && playerChoice === PAPER ||
+  //   computerChoice === PAPER && playerChoice === SCISSORS ||
+  //   computerChoice === SCISSORS && playerChoice === ROCK
+  // ) {
+  //   return RESULT_PLAYER_WINS
+  // } else {
+  //   return RESULT_COMPUTER_WINS
+  // }
+
+
+startGameBtn.addEventListener('click', () => {
   if (gameIsRunning) {
     return
   }
