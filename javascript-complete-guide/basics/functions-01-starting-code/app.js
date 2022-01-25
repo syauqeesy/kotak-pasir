@@ -1,5 +1,7 @@
 const startGameBtn = document.getElementById('start-game-btn');
 
+// start() // <- Error
+
 const start = function () {
   console.log('Game is starting...')
 }
