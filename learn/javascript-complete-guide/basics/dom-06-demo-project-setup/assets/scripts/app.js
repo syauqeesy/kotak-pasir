@@ -24,7 +24,23 @@ const updateUI = () => {
   }
 }
 
-const renderMovieElement = (title, imageUrl, rating) => {
+const deleteMovieHandler = (movieId) => {
+  let movieIndex = 0
+
+  for (const movie of movies) {
+    if (movie.id === movieId) {
+      break
+    }
+
+    movieIndex++
+  }
+
+  movies.splice(movieIndex, 1)
+  const listRoot = document.getElementById('movie-list')
+  listRoot.children[movieIndex].remove()
+}
+
+const renderMovieElement = (id, title, imageUrl, rating) => {
   const newMovieElement = document.createElement('li')
 
   newMovieElement.className = 'movie-element'
@@ -37,6 +53,7 @@ const renderMovieElement = (title, imageUrl, rating) => {
       <p>${rating}/5 stars</p>
     </div>
   `
+  newMovieElement.addEventListener('click', deleteMovieHandler.bind(null, id))
 
   const listRoot = document.getElementById('movie-list')
   listRoot.appendChild(newMovieElement)
@@ -84,6 +101,7 @@ const addMovieHandler = () => {
   }
 
   const newMovie = {
+    id: Math.random().toString(),
     title: titleValue,
     imageUrl: imageUrlValue,
     rating: ratingValue
@@ -95,7 +113,7 @@ const addMovieHandler = () => {
 
   toggleMovieModal()
   clearMovieInputs()
-  renderMovieElement(newMovie.title, newMovie.imageUrl, newMovie.rating)
+  renderMovieElement(newMovie.id, newMovie.title, newMovie.imageUrl, newMovie.rating)
   updateUI()
 }
 
