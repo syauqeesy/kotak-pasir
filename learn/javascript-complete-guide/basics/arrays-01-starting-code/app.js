@@ -43,6 +43,7 @@ console.log(hobbies)
 // console.log(hobbies)
 
 const testResults = [2, 0, -1, 9.3, 4, -9]
-const storedResults = testResults.slice(0, 2)
+// const storedResults = testResults.slice(0, 2)
+const storedResults = testResults.concat([3.99, 2])
 testResults.push(7)
 console.log(testResults, storedResults)
