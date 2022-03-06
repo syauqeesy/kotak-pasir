@@ -1,4 +1,4 @@
-const person = {
+let person = {
   name: 'Syauqi',
   age: 30,
   hobbies: ['Cooking', 'Coding'],
@@ -7,4 +7,9 @@ const person = {
   }
 }
 
-person.greet()
+person.age = 19
+person.isAdmin = true
+// delete person.age
+person.age = null
+
+console.log(person)
