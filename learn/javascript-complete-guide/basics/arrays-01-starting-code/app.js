@@ -33,6 +33,11 @@ hobbies.shift()
 
 console.log(hobbies)
 
-hobbies[1] = 'Coding'
-hobbies[5] = 'Reading'
-console.log(hobbies, hobbies[4])
+// hobbies[1] = 'Coding'
+// hobbies[5] = 'Reading'
+// console.log(hobbies, hobbies[4])
+
+hobbies.splice(1, 0, 'Eat')
+console.log(hobbies)
+hobbies.splice(0)
+console.log(hobbies)
