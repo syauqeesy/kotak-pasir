@@ -70,15 +70,10 @@ console.log(numbers)
 
 const prices = [10000, 15000, 7500]
 const tax = 0.19
-const taxAdjustedPrices = []
 
-// for (const price of prices) {
-//   taxAdjustedPrices.push(price * (1 + tax))
-// }
-
-prices.forEach((price, index, prices) => {
+const taxAdjustedPrices = prices.map((price, index, prices) => {
   const priceObj = { index,  taxAdjustedPrice: price * (1 + tax)}
-  taxAdjustedPrices.push(priceObj)
+  return priceObj
 })
 
-console.log(taxAdjustedPrices)
+console.log(prices, taxAdjustedPrices)
