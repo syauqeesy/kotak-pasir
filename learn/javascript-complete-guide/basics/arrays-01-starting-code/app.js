@@ -51,3 +51,18 @@ console.log(testResults.lastIndexOf(9.3))
 
 const personData = [{ name: 'Syauqi' }, { name: 'Aziz' }]
 console.log(personData.indexOf({ name: 'Syauqi' }))
+
+const syauqi = personData.find((person, index, persons) => {
+  return person.name === 'Syauqi'
+})
+
+syauqi.name = 'Anna'
+
+console.log(personData)
+console.log(syauqi)
+
+const azizIndex = personData.findIndex((person, index, persons) => {
+  return person.name === 'Aziz'
+})
+
+console.log(azizIndex)
