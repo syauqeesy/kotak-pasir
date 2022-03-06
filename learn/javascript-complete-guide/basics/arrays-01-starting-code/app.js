@@ -13,3 +13,15 @@ console.log(listItems)
 
 const moreNumbers = Array.from(listItems)
 console.log(moreNumbers)
+
+const hobbies = ['Cooking', 'Sport']
+const personalData = [19, 'Syauqi', { moreDetail: '' }]
+const analitycsData = [[1, 1.3, 3], [2, -3, 1.3]]
+
+for (const data of analitycsData) {
+  for (const dataPoint of data) {
+    console.log(dataPoint)
+  }
+}
+
+console.log(personalData[1])
