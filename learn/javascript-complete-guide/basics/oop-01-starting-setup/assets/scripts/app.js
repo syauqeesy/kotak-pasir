@@ -4,24 +4,18 @@ class Product {
   description
   price
 
-
+  constructor (title, imageUrl, description, price) {
+    this.title = title
+    this.imageUrl = imageUrl
+    this.description = description
+    this.price = price
+  }
 }
 
 const productList = {
   products: [
-    new Product(),
-    { 
-      title: 'A Pillow',
-      imageUrl: 'https://media.istockphoto.com/photos/white-pillow-isolated-on-white-background-picture-id1018424252?k=20&m=1018424252&s=612x612&w=0&h=Q2g1Ht1n-1xw0pGUM02f3lZnjFhLj1xMocg8e-oYSeo=',
-      price: 19.99,
-      description: 'A soft pillow'
-    },
-    { 
-      title: 'Carpet',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-sQ9XuRYGITT2Scwweh4AGNaMMeUG_A9JpA&usqp=CAU',
-      price: 90.99,
-      description: 'A carpet you might like'
-    }
+    new Product('A Pillow', 'https://media.istockphoto.com/photos/white-pillow-isolated-on-white-background-picture-id1018424252?k=20&m=1018424252&s=612x612&w=0&h=Q2g1Ht1n-1xw0pGUM02f3lZnjFhLj1xMocg8e-oYSeo=', 19.99, 'A soft pillow'),
+    new Product('Carpet', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-sQ9XuRYGITT2Scwweh4AGNaMMeUG_A9JpA&usqp=CAU', 90.99, 'A carpet you might like')
   ],
   render () {
     const renderHook = document.getElementById('app')
