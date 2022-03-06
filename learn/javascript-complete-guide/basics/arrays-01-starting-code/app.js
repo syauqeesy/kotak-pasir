@@ -89,7 +89,5 @@ const sortedPrices = prices.sort((a, b) => {
 })
 console.log(sortedPrices.reverse())
 
-const filteredArray = prices.filter((price, index, prices) => {
-  return price < 10000
-})
+const filteredArray = prices.filter(price => price < 10000)
 console.log(filteredArray)
