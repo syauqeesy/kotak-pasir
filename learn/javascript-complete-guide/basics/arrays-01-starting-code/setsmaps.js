@@ -34,6 +34,12 @@
 let person = { name: 'Ahmad' }
 const persons = new WeakSet()
 persons.add(person)
-person = null
+// person = null
 
 console.log(persons)
+
+const personData = new WeakMap()
+personData.set(person, 'Extra info')
+person = null
+console.log(personData)
+
