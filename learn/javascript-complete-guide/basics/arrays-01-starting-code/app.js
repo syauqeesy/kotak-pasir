@@ -42,8 +42,12 @@ console.log(hobbies)
 // hobbies.splice(0)
 // console.log(hobbies)
 
-const testResults = [2, 0, -1, 9.3, 4, -9]
+const testResults = [2, 0, -1, 9.3, 4, 9.3, -9]
 // const storedResults = testResults.slice(0, 2)
 const storedResults = testResults.concat([3.99, 2])
 testResults.push(7)
 console.log(testResults, storedResults)
+console.log(testResults.lastIndexOf(9.3))
+
+const personData = [{ name: 'Syauqi' }, { name: 'Aziz' }]
+console.log(personData.indexOf({ name: 'Syauqi' }))
