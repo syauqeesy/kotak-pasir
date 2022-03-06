@@ -25,3 +25,14 @@ for (const data of analitycsData) {
 }
 
 console.log(personalData[1])
+
+hobbies.push('Reading')
+hobbies.unshift('Playing Guitar')
+const poppedValue = hobbies.pop()
+hobbies.shift()
+
+console.log(hobbies)
+
+hobbies[1] = 'Coding'
+hobbies[5] = 'Reading'
+console.log(hobbies, hobbies[4])
