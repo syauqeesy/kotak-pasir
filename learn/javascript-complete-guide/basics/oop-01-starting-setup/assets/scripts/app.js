@@ -15,13 +15,18 @@ class Product {
 class ShoppingCart {
   items = []
 
+  addProduct (product) {
+    this.items.push(product)
+    this.totalOutput = `<h2>Total: \$${1}</h2>`
+  }
+
   render () {
     const cartEl = document.createElement('section')
     cartEl.innerHTML = `
       <h2>Total: \$${0}</h2>
       <button>Order now</button>
     `
-
+    this.totalOutput = cartEl.querySelector('h2')
     cartEl.className = 'cart'
     return cartEl
   }
