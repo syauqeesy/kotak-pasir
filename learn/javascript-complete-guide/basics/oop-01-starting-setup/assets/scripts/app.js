@@ -22,7 +22,10 @@ class ElementAttribute {
 class Component {
   constructor (renderHookId) {
     this.hookId = renderHookId
+    this.render()
   }
+
+  render () {}
 
   createRootElement (tag, cssClass, attributes) {
     const rootElement = document.createElement(tag)
@@ -121,18 +124,19 @@ class ProductList extends Component {
     prodList.id = 'prod-list'
     prodList.className = 'product-list'
     for (const product of this.products) {
-      const productItem = new ProductItem(product, 'prod-list')
-      productItem.render()
+      new ProductItem(product, 'prod-list')
     }
   }
 }
 
 class Shop {
+  constructor () {
+    this.render()
+  }
+
   render () {
     this.cart = new ShoppingCart('app')
-    this.cart.render()
-    const productList = new ProductList('app')
-    productList.render()
+    new ProductList('app')
   }
 }
 
@@ -141,7 +145,6 @@ class App {
   
   static init () {
     const shop = new Shop()
-    shop.render()
     this.cart = shop.cart
   }
 
