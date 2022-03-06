@@ -12,7 +12,36 @@ class Product {
   }
 }
 
-class ShoppingCart {
+class ElementAttribute {
+  constructor (attrName, attrValue) {
+    this.name = attrName
+    this.value = attrValue
+  }
+}
+
+class Component {
+  constructor (renderHookId) {
+    this.hookId = renderHookId
+  }
+
+  createRootElement (tag, cssClass, attributes) {
+    const rootElement = document.createElement(tag)
+    if (cssClass) {
+      rootElement.className = cssClass
+    }
+
+    if (attributes && attributes.length > 0) {
+      for (const attribute of attributes) {
+        rootElement.setAttribute(attribute.name, attribute.value)
+      }
+    }
+
+    document.getElementById(this.hookId).append(rootElement)
+    return rootElement
+  }
+}
+
+class ShoppingCart extends Component {
   items = []
 
   set cartItems(value) {
@@ -28,6 +57,10 @@ class ShoppingCart {
     return sum
   }
 
+  constructor (renderHookId) {
+    super(renderHookId)
+  }
+
   addProduct (product) {
     const updatedItems = [...this.items]
     updatedItems.push(product)
@@ -35,14 +68,12 @@ class ShoppingCart {
   }
 
   render () {
-    const cartEl = document.createElement('section')
+    const cartEl = this.createRootElement('section', 'cart')
     cartEl.innerHTML = `
       <h2>Total: \$${0}</h2>
       <button>Order now</button>
     `
-    cartEl.className = 'cart'
     this.totalOutput = cartEl.querySelector('h2')
-    return cartEl
   }
 }
 
@@ -98,13 +129,12 @@ class ProductList {
 
 class Shop {
   render () {
-    this.cart = new ShoppingCart()
+    this.cart = new ShoppingCart('app')
+    this.cart.render()
     const renderHook = document.getElementById('app')
-    const cartElement = this.cart.render()
     const productList = new ProductList()
     const productListElement = productList.render()
 
-    renderHook.append(cartElement)
     renderHook.append(productListElement)
   }
 }
