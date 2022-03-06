@@ -37,7 +37,12 @@ console.log(hobbies)
 // hobbies[5] = 'Reading'
 // console.log(hobbies, hobbies[4])
 
-hobbies.splice(1, 0, 'Eat')
-console.log(hobbies)
-hobbies.splice(0)
-console.log(hobbies)
+// hobbies.splice(1, 0, 'Eat')
+// console.log(hobbies)
+// hobbies.splice(0)
+// console.log(hobbies)
+
+const testResults = [2, 0, -1, 9.3, 4, -9]
+const storedResults = testResults.slice(0, 2)
+testResults.push(7)
+console.log(testResults, storedResults)
