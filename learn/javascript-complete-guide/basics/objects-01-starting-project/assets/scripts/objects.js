@@ -9,7 +9,8 @@ let person = {
   hobbies: ['Cooking', 'Coding'],
   greet: function () {
     alert('Hi there!')
-  }
+  },
+  1.5: 'Hello'
 }
 
 person.age = 19
@@ -18,3 +19,5 @@ person.isAdmin = true
 person.age = null
 
 console.log(person['first name'])
+console.log(person[1.5])
+console.log(person)
