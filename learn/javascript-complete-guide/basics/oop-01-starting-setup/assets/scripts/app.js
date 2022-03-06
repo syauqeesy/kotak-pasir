@@ -121,15 +121,16 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-  products = []
+  #products = []
 
   constructor (renderHookId) {
-    super(renderHookId)
-    this.fetchProducts()
+    super(renderHookId, false)
+    this.render()
+    this.#fetchProducts()
   }
 
-  fetchProducts () {
-    this.products = [
+  #fetchProducts () {
+    this.#products = [
       new Product('A Pillow', 'https://media.istockphoto.com/photos/white-pillow-isolated-on-white-background-picture-id1018424252?k=20&m=1018424252&s=612x612&w=0&h=Q2g1Ht1n-1xw0pGUM02f3lZnjFhLj1xMocg8e-oYSeo=', 'A soft pillow', 19.99),
       new Product('Carpet', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-sQ9XuRYGITT2Scwweh4AGNaMMeUG_A9JpA&usqp=CAU', 'A carpet you might like', 90.99)
     ]
@@ -138,14 +139,14 @@ class ProductList extends Component {
   }
 
   renderProducts () {
-    for (const product of this.products) {
+    for (const product of this.#products) {
       new ProductItem(product, 'prod-list')
     }
   }
 
   render () {
     this.createRootElement('ul', 'product-list', [new ElementAttribute('id', 'prod-list')])
-    if (this.products && this.products.length > 0) {
+    if (this.#products && this.#products.length > 0) {
       this.renderProducts()
     }
   }
