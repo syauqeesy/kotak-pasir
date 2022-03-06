@@ -68,7 +68,7 @@ console.log(numbers)
 
 // console.log(azizIndex)
 
-const prices = [10000, 15000, 7500]
+const prices = [10000, 15000, 7500, 8500, 3000]
 const tax = 0.19
 
 const taxAdjustedPrices = prices.map((price, index, prices) => {
@@ -88,3 +88,8 @@ const sortedPrices = prices.sort((a, b) => {
   }
 })
 console.log(sortedPrices.reverse())
+
+const filteredArray = prices.filter((price, index, prices) => {
+  return price < 10000
+})
+console.log(filteredArray)
