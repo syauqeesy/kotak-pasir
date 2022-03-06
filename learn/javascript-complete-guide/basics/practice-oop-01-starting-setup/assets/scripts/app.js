@@ -12,26 +12,46 @@ class DOMHelper {
   }
 }
 
-class Tooltip {
-  constructor (closeNotifierFunction) {
-    this.closeNotifierHandler = closeNotifierFunction
+class Component {
+  constructor (hostElementId, insertBefore = false) {
+    if (hostElementId) {
+      this.hostElement = document.getElementById(hostElementId)
+    } else {
+      this.hostElement = document.body
+    }
+
+    this.insertBefore = insertBefore
   }
+
+  detach () {
+    if (this.element) {
+      this.element.remove()
+    }
+  }
+  
+  attach () {
+    this.hostElement.insertAdjacentElement(this.insertBefore ? 'beforebegin' : 'beforeend', this.element)
+  }
+}
+
+class Tooltip extends Component {
+  constructor (closeNotifierFunction) {
+    super()
+    this.closeNotifierHandler = closeNotifierFunction
+    this.create()
+  }
+
   closeTooltip = () => {
     this.detach()
     this.closeNotifierHandler()
   }
 
-  detach () {
-    this.element.remove()
-  }
-  
-  attach () {
+  create () {
     const tooltipElement = document.createElement('div')
     tooltipElement.className = 'card'
     tooltipElement.textContent = 'DUMMY'
     tooltipElement.addEventListener('click',this.closeTooltip)
     this.element = tooltipElement
-    document.body.append(tooltipElement)
   }
 }
 
