@@ -3,10 +3,13 @@ class Product {
   imageUrl
   description
   price
+
+
 }
 
 const productList = {
   products: [
+    new Product(),
     { 
       title: 'A Pillow',
       imageUrl: 'https://media.istockphoto.com/photos/white-pillow-isolated-on-white-background-picture-id1018424252?k=20&m=1018424252&s=612x612&w=0&h=Q2g1Ht1n-1xw0pGUM02f3lZnjFhLj1xMocg8e-oYSeo=',
