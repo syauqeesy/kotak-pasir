@@ -15,9 +15,23 @@ class Product {
 class ShoppingCart {
   items = []
 
+  set cartItems(value) {
+    this.items = value
+    console.log(this.items)
+    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`
+  }
+
+  get totalAmount () {
+    const sum = this.items.reduce((prevValue, curItem) => {
+      return prevValue + curItem.price
+    }, 0)
+    return sum
+  }
+
   addProduct (product) {
-    this.items.push(product)
-    this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`
+    const updatedItems = [...this.items]
+    updatedItems.push(product)
+    this.cartItems = updatedItems
   }
 
   render () {
@@ -65,8 +79,8 @@ class ProductItem {
 
 class ProductList {
   products = [
-    new Product('A Pillow', 'https://media.istockphoto.com/photos/white-pillow-isolated-on-white-background-picture-id1018424252?k=20&m=1018424252&s=612x612&w=0&h=Q2g1Ht1n-1xw0pGUM02f3lZnjFhLj1xMocg8e-oYSeo=', 19.99, 'A soft pillow'),
-    new Product('Carpet', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-sQ9XuRYGITT2Scwweh4AGNaMMeUG_A9JpA&usqp=CAU', 90.99, 'A carpet you might like')
+    new Product('A Pillow', 'https://media.istockphoto.com/photos/white-pillow-isolated-on-white-background-picture-id1018424252?k=20&m=1018424252&s=612x612&w=0&h=Q2g1Ht1n-1xw0pGUM02f3lZnjFhLj1xMocg8e-oYSeo=', 'A soft pillow', 19.99),
+    new Product('Carpet', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-sQ9XuRYGITT2Scwweh4AGNaMMeUG_A9JpA&usqp=CAU', 'A carpet you might like', 90.99)
   ]
 
   constructor () {}
