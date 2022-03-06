@@ -105,3 +105,11 @@ const sum = prices.reduce((prevValue, curValue, curIndex, prices) => {
 }, 0)
 
 console.log(sum)
+
+const data = 'New York;10.99;2000'
+const transformedData = data.split(';')
+console.log(transformedData)
+
+const nameFragments = ['Ahmad', 'Syauqi']
+const name = nameFragments.join(' ')
+console.log(name)
