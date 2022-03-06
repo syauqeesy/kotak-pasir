@@ -1,32 +1,39 @@
-// const ids = new Set(['Hi', 'From', 'Set'])
-// ids.add(2)
-// if (ids.has('Hi'))
-//   ids.delete('Hi')
+// // const ids = new Set(['Hi', 'From', 'Set'])
+// // ids.add(2)
+// // if (ids.has('Hi'))
+// //   ids.delete('Hi')
 
-// for (const entry of ids.values()) {
-//   console.log(entry)
+// // for (const entry of ids.values()) {
+// //   console.log(entry)
+// // }
+// // console.log(ids)
+
+// const person1 = { name: 'Ahmad' }
+// const person2 = { name: 'Aziz' }
+
+// const personData = new Map([[person1, [{ date: 'yesterday', price: 10 }]]])
+// console.log(personData.get(person1));
+
+// personData.set(person2, [{ date: '2 weeks ago', price: 9 }])
+// console.log(personData)
+
+// for (const [key, value] of personData.entries()) {
+//   console.log(key, value)
 // }
-// console.log(ids)
 
-const person1 = { name: 'Ahmad' }
-const person2 = { name: 'Aziz' }
+// for (const key of personData.keys()) {
+//   console.log(key)
+// }
 
-const personData = new Map([[person1, [{ date: 'yesterday', price: 10 }]]])
-console.log(personData.get(person1));
+// for (const value of personData.values()) {
+//   console.log(value)
+// }
 
-personData.set(person2, [{ date: '2 weeks ago', price: 9 }])
-console.log(personData)
+// console.log(personData.size)
 
-for (const [key, value] of personData.entries()) {
-  console.log(key, value)
-}
+let person = { name: 'Ahmad' }
+const persons = new WeakSet()
+persons.add(person)
+person = null
 
-for (const key of personData.keys()) {
-  console.log(key)
-}
-
-for (const value of personData.values()) {
-  console.log(value)
-}
-
-console.log(personData.size)
+console.log(persons)
