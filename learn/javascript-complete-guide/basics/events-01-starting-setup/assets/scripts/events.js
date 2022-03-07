@@ -42,3 +42,17 @@ button.addEventListener('click', event => {
   console.log('CLICKED BUTTON')
   console.log(event)
 })
+
+const listItems = document.querySelectorAll('li')
+const list = document.querySelector('ul')
+
+list.addEventListener('click', event => {
+  // event.target.classList.toggle('highlight')
+  event.target.closest('li').classList.toggle('highlight')
+})
+
+// listItems.forEach(listItem => {
+//   listItem.addEventListener('click', event => {
+//     event.target.classList.toggle('highlight')
+//   })
+// })
