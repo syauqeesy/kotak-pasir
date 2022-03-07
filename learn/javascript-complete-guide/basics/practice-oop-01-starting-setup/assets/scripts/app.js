@@ -35,9 +35,10 @@ class Component {
 }
 
 class Tooltip extends Component {
-  constructor (closeNotifierFunction) {
+  constructor (closeNotifierFunction, text) {
     super()
     this.closeNotifierHandler = closeNotifierFunction
+    this.text = text
     this.create()
   }
 
@@ -49,7 +50,7 @@ class Tooltip extends Component {
   create () {
     const tooltipElement = document.createElement('div')
     tooltipElement.className = 'card'
-    tooltipElement.textContent = 'DUMMY'
+    tooltipElement.textContent = this.text
     tooltipElement.addEventListener('click',this.closeTooltip)
     this.element = tooltipElement
   }
@@ -75,9 +76,11 @@ class ProjectItem {
     if (this.hasActiveTooltip) {
       return
     }
+    const projectElement = document.getElementById(this.id)
+    const tooltipTest = projectElement.dataset.extraInfo
     const tooltip = new Tooltip(() => {
       this.hasActiveTooltip = false
-    })
+    }, tooltipTest)
     tooltip.attach()
     this.hasActiveTooltip = true
   }
@@ -85,7 +88,7 @@ class ProjectItem {
   connectMoreInfoButton() {
     const projectItemElement = document.getElementById(this.id)
     const moreInfoButton = projectItemElement.querySelector('button:first-of-type')
-    moreInfoButton.addEventListener('click', this.showMoreInfoHandler)
+    moreInfoButton.addEventListener('click', this.showMoreInfoHandler.bind(this))
   }
 
   connectSwitchButton (type) {
