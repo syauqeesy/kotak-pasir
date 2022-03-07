@@ -1,20 +1,24 @@
-const buttons = document.querySelectorAll('button')
+// const buttons = document.querySelectorAll('button')
 
-const buttonClickHandler = event => {
-  event.target.disabled = true
-  alert('button was clicked')
-}
+// const buttonClickHandler = event => {
+//   // event.target.disabled = true
+//   console.log(event)
+// }
 
-const anotherButtonClickHandler = () => {
-  alert('button was clicked 2')
-}
+// const anotherButtonClickHandler = () => {
+//   alert('button was clicked 2')
+// }
 
 // button.onclick = buttonClickHandler
 
-buttons.forEach(button => {
-  button.addEventListener('click', buttonClickHandler)
-})
+// buttons.forEach(button => {
+//   button.addEventListener('mouseenter', buttonClickHandler)
+// })
 
 // setTimeout(() => {
 //   button.removeEventListener('click', buttonClickHandler)
 // }, 2000)
+
+// window.addEventListener('scroll', event => {
+//   console.log(event)
+// })
