@@ -81,7 +81,7 @@ class ProjectItem {
     this.updateProjectListsHandler = updateProjectListsFunction
     this.connectSwitchButton(type)
     this.connectMoreInfoButton()
-    
+    this.connectDrag()
   }
 
   update (updateProjectListsFunction, type) {
@@ -106,6 +106,13 @@ class ProjectItem {
     const projectItemElement = document.getElementById(this.id)
     const moreInfoButton = projectItemElement.querySelector('button:first-of-type')
     moreInfoButton.addEventListener('click', this.showMoreInfoHandler.bind(this))
+  }
+
+  connectDrag () {
+    document.getElementById(this.id).addEventListener('dragstart', event => {
+      event.dataTransfer.setData('text/plain', this.id)
+      event.dataTransfer.effectAllowed = 'move'
+    })
   }
 
   connectSwitchButton (type) {
@@ -155,13 +162,13 @@ class App {
     activeProjectsList.setSwitchHandler(finishedProjectsList.addProject.bind(finishedProjectsList))
     finishedProjectsList.setSwitchHandler(activeProjectsList.addProject.bind(activeProjectsList))
 
-    const someScript = document.createElement('script')
-    // someScript.textContent = 'alert("Hi there!")'
-    document.head.append(someScript)
-    const timerId = setTimeout(this.startAnalytics, 3000)
-    document.getElementById('stop-analytics-btn').addEventListener('click', () => {
-      clearTimeout(timerId)
-    })
+    // const someScript = document.createElement('script')
+    // // someScript.textContent = 'alert("Hi there!")'
+    // document.head.append(someScript)
+    // const timerId = setTimeout(this.startAnalytics, 3000)
+    // document.getElementById('stop-analytics-btn').addEventListener('click', () => {
+    //   clearTimeout(timerId)
+    // })
   }
 
   static startAnalytics () {
