@@ -113,6 +113,11 @@ class ProjectItem {
       event.dataTransfer.setData('text/plain', this.id)
       event.dataTransfer.effectAllowed = 'move'
     })
+
+    document.getElementById(this.id).addEventListener('dragend', event => {
+      console.log(event)
+    })
+
   }
 
   connectSwitchButton (type) {
@@ -154,6 +159,16 @@ class ProjectList {
     list.addEventListener('dragleave', event => {
       if (event.relatedTarget.closest(`#${this.type}-projects ul`) !== list)
       list.parentElement.classList.remove('droppable')
+    })
+    list.addEventListener('drop', event => {
+      const projectId = event.dataTransfer.getData('text/plain')
+      if (this.projects.find(project => project.id === projectId)) {
+        return
+      }
+
+      document.getElementById(projectId).querySelector('button:last-of-type').click()
+      list.parentElement.classList.add('droppable')
+      event.preventDefault()
     })
   }
 
