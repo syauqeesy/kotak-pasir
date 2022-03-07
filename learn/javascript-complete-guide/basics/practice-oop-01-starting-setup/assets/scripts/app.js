@@ -154,6 +154,18 @@ class App {
     const finishedProjectsList = new ProjectList('finished')
     activeProjectsList.setSwitchHandler(finishedProjectsList.addProject.bind(finishedProjectsList))
     finishedProjectsList.setSwitchHandler(activeProjectsList.addProject.bind(activeProjectsList))
+
+    const someScript = document.createElement('script')
+    someScript.textContent = 'alert("Hi there!")'
+    document.head.append(someScript)
+    document.getElementById('start-analytics-btn').addEventListener('click', this.startAnalytics)
+  }
+
+  static startAnalytics () {
+    const analyticsScript = document.createElement('script')
+    analyticsScript.src = 'assets/scripts/analytics.js'
+    analyticsScript.defer = true
+    document.head.append(analyticsScript)
   }
 }
 
