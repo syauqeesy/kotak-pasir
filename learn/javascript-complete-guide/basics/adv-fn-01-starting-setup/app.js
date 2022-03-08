@@ -47,3 +47,16 @@ const incomeTaxAmount = createTaxCalculator(0.25)
 
 console.log(calculateVatAmount(100))
 console.log(calculateVatAmount(200))
+
+let userName = 'Syauqi'
+
+function greetUser() {
+  let name = 'Anna'
+  console.log('hi ' + name)
+}
+
+let name = 'Aziz'
+
+userName = 'Ahmed'
+
+greetUser()
