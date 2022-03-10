@@ -5,29 +5,33 @@ const fetchButton = document.querySelector('#available-posts button')
 const postList = document.querySelector('ul')
 
 function sendHttpRequest(method, url, data) {
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest()
-    xhr.open(method, url)
-    xhr.responseType = 'json'
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(xhr.response)
-      }
-      reject(new Error('Something went wrong'))
-      // const posts = JSON.parse(xhr.response)
-    }
-    xhr.onerror = function () {
-      reject(new Error('Failed to send request'))
-    }
-    xhr.send(JSON.stringify(data))
-  })
+  // const promise = new Promise((resolve, reject) => {
+  //   const xhr = new XMLHttpRequest()
+  //   xhr.open(method, url)
+  //   xhr.responseType = 'json'
+  //   xhr.onload = function () {
+  //     if (xhr.status >= 200 && xhr.status < 300) {
+  //       resolve(xhr.response)
+  //     }
+  //     reject(new Error('Something went wrong'))
+  //     // const posts = JSON.parse(xhr.response)
+  //   }
+  //   xhr.onerror = function () {
+  //     reject(new Error('Failed to send request'))
+  //   }
+  //   xhr.send(JSON.stringify(data))
 
-  return promise
+  return fetch(url).then(response => {
+    return response.json()
+  })
+  // })
+
+  // return promise
 }
 
 async function fetchPosts() {
-  try {
-    const response = await sendHttpRequest('GET', 'https://jsonplaceholder.typicode.com/possts')
+  // try {
+    const response = await sendHttpRequest('GET', 'https://jsonplaceholder.typicode.com/posts')
     const posts = response
     for (const post of posts) {
       const postElement = document.importNode(postTemplate.content, true)
@@ -36,9 +40,9 @@ async function fetchPosts() {
       postElement.querySelector('li').id = post.id
       listElement.append(postElement)
     }
-  } catch (error) {
-    alert(error.message)
-  }
+  // } catch (error) {
+  //   alert(error.message)
+  // }
 }
 
 async function createPost(title, body) {
