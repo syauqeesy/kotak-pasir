@@ -10,8 +10,14 @@ function sendHttpRequest(method, url, data) {
     xhr.open(method, url)
     xhr.responseType = 'json'
     xhr.onload = function () {
-      resolve(xhr.response)
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(xhr.response)
+      }
+      reject(new Error('Something went wrong'))
       // const posts = JSON.parse(xhr.response)
+    }
+    xhr.onerror = function () {
+      reject(new Error('Failed to send request'))
     }
     xhr.send(JSON.stringify(data))
   })
@@ -20,14 +26,18 @@ function sendHttpRequest(method, url, data) {
 }
 
 async function fetchPosts() {
-  const response = await sendHttpRequest('GET', 'https://jsonplaceholder.typicode.com/posts')
-  const posts = response
-  for (const post of posts) {
-    const postElement = document.importNode(postTemplate.content, true)
-    postElement.querySelector('h2').textContent = post.title
-    postElement.querySelector('p').textContent = post.body
-    postElement.querySelector('li').id = post.id
-    listElement.append(postElement)
+  try {
+    const response = await sendHttpRequest('GET', 'https://jsonplaceholder.typicode.com/possts')
+    const posts = response
+    for (const post of posts) {
+      const postElement = document.importNode(postTemplate.content, true)
+      postElement.querySelector('h2').textContent = post.title
+      postElement.querySelector('p').textContent = post.body
+      postElement.querySelector('li').id = post.id
+      listElement.append(postElement)
+    }
+  } catch (error) {
+    alert(error.message)
   }
 }
 
