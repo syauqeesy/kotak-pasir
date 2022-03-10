@@ -61,3 +61,27 @@ button.addEventListener('click', trackUserHandler);
 // }
 
 // console.log(result)
+
+Promise.race([
+  getPosition(),
+  setTimer(1000)
+])
+  .then(data => {
+    console.log(data)
+  })
+
+Promise.all([
+  getPosition(),
+  setTimer(2000)
+])
+  .then(data => {
+    console.log(data)
+  })
+
+Promise.allSettled([
+  getPosition(),
+  setTimer(2000)
+])
+  .then(data => {
+    console.log(data)
+  })
