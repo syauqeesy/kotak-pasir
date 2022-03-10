@@ -29,7 +29,16 @@ function sendHttpRequest(method, url, data) {
       'Content-Type': 'application/json'
     }
   }).then(response => {
-    return response.json()
+    if (response.status >= 200 && response.status < 300) {
+      return response.json()
+    }
+    return response.json().then(errorData => {
+      console.log(errorData)
+      throw new Error('Something went wrong - server side')
+    })
+  }).catch(error => {
+    console.log(error)
+    throw new Error('Something went wrong')
   })
   // })
 
@@ -37,7 +46,7 @@ function sendHttpRequest(method, url, data) {
 }
 
 async function fetchPosts() {
-  // try {
+  try {
     const response = await sendHttpRequest('GET', 'https://jsonplaceholder.typicode.com/posts')
     const posts = response
     for (const post of posts) {
@@ -47,9 +56,9 @@ async function fetchPosts() {
       postElement.querySelector('li').id = post.id
       listElement.append(postElement)
     }
-  // } catch (error) {
-  //   alert(error.message)
-  // }
+  } catch (error) {
+    alert(error.message)
+  }
 }
 
 async function createPost(title, body) {
