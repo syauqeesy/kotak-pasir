@@ -3,10 +3,13 @@ package main
 import (
 	"behoon/restful-api/application"
 	"behoon/restful-api/controller"
+	"behoon/restful-api/helper"
 	"behoon/restful-api/repository"
 	"behoon/restful-api/service"
+	"net/http"
 
 	"github.com/go-playground/validator/v10"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -25,4 +28,12 @@ func main() {
 	router.POST("/api/categories", categoryController.Create)
 	router.PUT("/api/categories/:categoryId", categoryController.Update)
 	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
+
+	server := http.Server{
+		Addr:    "localhost:8086",
+		Handler: router,
+	}
+
+	err := server.ListenAndServe()
+	helper.PanicIfError(err)
 }
