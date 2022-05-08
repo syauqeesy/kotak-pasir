@@ -5,6 +5,7 @@ import (
 	"behoon/restful-api/controller"
 	"behoon/restful-api/exception"
 	"behoon/restful-api/helper"
+	"behoon/restful-api/middleware"
 	"behoon/restful-api/repository"
 	"behoon/restful-api/service"
 	"net/http"
@@ -34,7 +35,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    "localhost:8086",
-		Handler: router,
+		Handler: middleware.NewAuthMiddleware(router),
 	}
 
 	err := server.ListenAndServe()
