@@ -2,6 +2,7 @@ const express = require('express')
 
 const app = express()
 const port = 5000
+const controller = require('./controller')
 
 app.disable('x-powered-by')
 
@@ -9,6 +10,8 @@ app.use([
   express.urlencoded({ extended: false }),
   express.json()
 ])
+
+app.use(controller)
 
 app.all('*', (_, response) => {
   const responseBody = {
