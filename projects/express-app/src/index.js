@@ -12,6 +12,7 @@ app.use([
 ])
 
 app.use(controller)
+app.use('/assets', express.static('./storage/profile-images'))
 
 app.all('*', (_, response) => {
   const responseBody = {
