@@ -9,9 +9,10 @@ const routers = {
 const controllers = {
   user: require('./User')
 }
+const middlewares = require('../middleware')
 
 routers.user
-  .post('/register', controllers.user.register)
+  .post('/register', middlewares.uploadProfileImage, controllers.user.register)
 
 app.use('/user', routers.user)
 
