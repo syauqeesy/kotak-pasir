@@ -1,3 +1,4 @@
 module.exports = {
-  database: require('./Database')
+  database: require('./Database'),
+  multer: require('multer')
 }
