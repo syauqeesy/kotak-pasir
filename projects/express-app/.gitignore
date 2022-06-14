@@ -1,5 +1,6 @@
 # Ignored
 node_modules/
+storage/profile-images/*
 .env
 
 ### Linux ###
