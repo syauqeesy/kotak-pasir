@@ -6,20 +6,12 @@ const app = express()
 const routers = {
   user: Router()
 }
+const controllers = {
+  user: require('./User')
+}
 
 routers.user
-  .post('/register', (request, response) => {
-    const responseBody = {
-      status: true,
-      code: 200,
-      message: 'Register success',
-      data: {
-        username: request.body.username
-      }
-    }
-
-    response.status(responseBody.code).json(responseBody)
-  })
+  .post('/register', controllers.user.register)
 
 app.use('/user', routers.user)
 
