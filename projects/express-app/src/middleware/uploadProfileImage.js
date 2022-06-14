@@ -15,7 +15,7 @@ const upload = app.multer({
 
 
 upload.fileFilter = (request, file, callback) => {
-  if (file.mimetype === 'image/jpg' || file.mimetype === 'image/png') {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
     callback(null, true)
 
     return
