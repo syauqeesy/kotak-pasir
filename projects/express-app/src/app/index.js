@@ -1,5 +1,6 @@
 module.exports = {
   database: require('./Database'),
   multer: require('multer'),
-  uuid: require('uuid')
+  uuid: require('uuid'),
+  joi: require('joi')
 }
