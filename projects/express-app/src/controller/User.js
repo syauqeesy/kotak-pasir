@@ -52,7 +52,6 @@ class User {
 
         response.status(responseBody.code).json(responseBody)
       })
-
   }
 }
 
