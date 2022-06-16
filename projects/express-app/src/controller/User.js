@@ -45,9 +45,7 @@ class User {
         response.status(responseBody.code).json(responseBody)
       })
       .catch(err => {
-        responseBody.status = false
         responseBody.code = 400
-        responseBody.message = 'Register failed'
         responseBody.data = helper.parseValidationError(err)
 
         response.status(responseBody.code).json(responseBody)
