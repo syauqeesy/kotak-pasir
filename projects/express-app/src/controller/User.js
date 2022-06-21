@@ -1,5 +1,6 @@
 const app = require('../app')
 const helper = require('../helper')
+const service = require('../service')
 
 class User {
 
@@ -36,13 +37,22 @@ class User {
     }
 
     schema.validateAsync(payload, { abortEarly: false })
-      .then(payload => {
-        responseBody.status = true
-        responseBody.code = 200
-        responseBody.message = 'Register success'
-        responseBody.data = payload
+      .then(async payload => {
+        try {
+          const result = await service.user.register(payload)
 
-        response.status(responseBody.code).json(responseBody)
+          responseBody.status = true
+          responseBody.code = 200
+          responseBody.message = 'Register success'
+          responseBody.data = result
+
+          response.status(responseBody.code).json(responseBody)
+        } catch (err) {
+          responseBody.code = 400
+          responseBody.data = err.message
+
+          response.status(responseBody.code).json(responseBody)
+        }
       })
       .catch(err => {
         responseBody.code = 400
