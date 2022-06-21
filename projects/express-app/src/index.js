@@ -14,7 +14,7 @@ app.use([
 app.use(controller)
 app.use('/assets', express.static('./storage/profile-images'))
 
-app.all('*', (_, response) => {
+app.all('*', (request, response) => {
   const responseBody = {
     success: false,
     code: 405,
