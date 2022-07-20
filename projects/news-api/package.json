@@ -1,0 +1,27 @@
+{
+  "name": "news-api",
+  "version": "1.0.0",
+  "description": "News Creawler",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/behoon/sandbox.git"
+  },
+  "author": "Ahmad Syauqi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/behoon/sandbox/issues"
+  },
+  "homepage": "https://github.com/behoon/sandbox#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "feedid": "^2.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
