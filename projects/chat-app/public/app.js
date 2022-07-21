@@ -13,7 +13,7 @@ form.addEventListener('submit', event => {
   socket.emit('send-message-to-server', {
     message: inputMessage.value,
     sender_id: 'user-id-1',
-    receiver_id: 'room-id-1',
+    receiver_id: 'user-id-2',
     created_at: new Date().toDateString()
   })
 })
