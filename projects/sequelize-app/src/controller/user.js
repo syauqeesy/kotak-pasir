@@ -48,5 +48,56 @@ router
       response.status(res.code).json(res)
     }
   })
+  .delete('/:userId', async (request, response) => {
+    const res = {
+      success: false,
+      code: 500,
+      message: 'Internal Server Error',
+      data: null
+    }
+
+    try {
+      await user.destroy({
+        where: {
+          id: request.params.userId
+        }
+      })
+
+      res.success = true
+      res.code = 200
+      res.message = 'User Deleted'
+
+      response.status(res.code).json(res)
+    } catch (err) {
+      response.status(res.code).json(res)
+    }
+  })
+  .put('/:userId', async (request, response) => {
+    const res = {
+      success: false,
+      code: 500,
+      message: 'Internal Server Error',
+      data: null
+    }
+
+    try {
+      await user.update({
+        first_name: request.body.first_name,
+        last_name: request.body.last_name
+      }, {
+        where: {
+          id: request.params.userId
+        }
+      })
+
+      res.success = true
+      res.code = 200
+      res.message = 'User Updated'
+
+      response.status(res.code).json(res)
+    } catch (err) {
+      response.status(res.code).json(res)
+    }
+  })
 
 module.exports = router

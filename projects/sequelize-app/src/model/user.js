@@ -17,6 +17,7 @@ const user = sequelize.define('user', {
     allowNull: false
   }
 }, {
+  paranoid: true,
   timestamps: true,
   createdAt: 'created_at',
   updatedAt: 'updated_at',
