@@ -19,7 +19,8 @@ const user = sequelize.define('user', {
 }, {
   timestamps: true,
   createdAt: 'created_at',
-  updatedAt: 'updated_at'
+  updatedAt: 'updated_at',
+  deletedAt: 'deleted_at'
 })
 
 module.exports = user

@@ -15,7 +15,7 @@ router
     try {
       await user.create({
         first_name: request.body.first_name,
-        last_name: request.body.first_name
+        last_name: request.body.last_name
       })
 
       res.success = true
@@ -24,7 +24,27 @@ router
 
       response.status(res.code).json(res)
     } catch (err) {
-      console.log(err)
+      response.status(res.code).json(res)
+    }
+  })
+  .get('/', async (request, response) => {
+    const res = {
+      success: false,
+      code: 500,
+      message: 'Internal Server Error',
+      data: null
+    }
+
+    try {
+      const users = await user.findAll()
+
+      res.success = true
+      res.code = 200
+      res.message = 'User Fetched'
+      res.data = users
+
+      response.status(res.code).json(res)
+    } catch (err) {
       response.status(res.code).json(res)
     }
   })
