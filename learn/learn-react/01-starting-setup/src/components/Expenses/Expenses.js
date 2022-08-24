@@ -5,7 +5,7 @@ import Card from "../UI/Card"
 
 import './Expenses.css'
 
-function App() {
+const Expenses = () => {
   const expenses = [
     {
       id: 'e1',
@@ -54,4 +54,4 @@ function App() {
   );
 }
 
-export default App;
+export default Expenses
