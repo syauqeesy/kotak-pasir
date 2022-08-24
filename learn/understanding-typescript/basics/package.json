@@ -1,12 +1,11 @@
 {
-  "name": "sequelize-app",
+  "name": "basics",
   "version": "1.0.0",
-  "description": "Sequelize Application",
+  "description": "Learn the basics of typescript",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
-    "sequelize": "sequelize"
+    "start": "./dist/index.js",
+    "ts": "tsc"
   },
   "repository": {
     "type": "git",
@@ -18,14 +17,7 @@
     "url": "https://github.com/behoon/sandbox/issues"
   },
   "homepage": "https://github.com/behoon/sandbox#readme",
-  "dependencies": {
-    "express": "^4.18.1",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.21.3",
-    "uuid": "^8.3.2"
-  },
   "devDependencies": {
-    "nodemon": "^2.0.19",
-    "sequelize-cli": "^6.4.1"
+    "typescript": "^4.7.4"
   }
 }
