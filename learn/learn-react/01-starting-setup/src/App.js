@@ -1,3 +1,5 @@
+import React from 'react'
+
 import Expense from './components/Expenses'
 
 function App() {
