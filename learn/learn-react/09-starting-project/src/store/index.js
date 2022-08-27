@@ -39,7 +39,7 @@ const authenticationSlice = createSlice({
 })
 
 export const counterActions = counterSlice.actions
-export const authentication = authenticationSlice.actions
+export const authenticationActions = authenticationSlice.actions
 
 export default configureStore({
   reducer: {
