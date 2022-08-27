@@ -8,6 +8,9 @@ const cartContext = createContext({
   },
   removeItem: id => {
 
+  },
+  clearCart: () => {
+
   }
 })
 
