@@ -3,4 +3,16 @@
   background: transparent;
   border: none;
   font-size: inherit;
+  border-radius: .25rem;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: crimson;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #be1134;
 }
