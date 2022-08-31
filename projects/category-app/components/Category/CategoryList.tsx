@@ -1,14 +1,18 @@
 import { FunctionComponent, ReactNode } from 'react'
 
+import Card from '../UI/Card'
+
 interface CategoryListProps {
   children: ReactNode
 }
 
 const CategoryList: FunctionComponent<CategoryListProps> = ({ children }) => {
   return (
-    <ul>
-      {children}
-    </ul>
+    <Card>
+      <ul>
+        {children}
+      </ul>
+    </Card>
   )
 }
 

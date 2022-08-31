@@ -2,6 +2,7 @@
   border: 1px solid #ccc;
   margin-bottom: .1rem;
   padding: .5rem;
+  list-style: none;
 }
 
 .category-item h2 {
