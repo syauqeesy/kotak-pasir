@@ -9,10 +9,19 @@
 }
 
 .btn-primary {
-  background-color: crimson;
+  background-color: #6a5acd;
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #be1134;
+  background-color: #6a5ddd;
+}
+
+.btn-danger {
+  background-color: #dc143c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #dc1111 ;
 }

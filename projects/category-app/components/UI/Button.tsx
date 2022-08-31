@@ -1,10 +1,9 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode, ButtonHTMLAttributes } from 'react'
 import classes from './Button.module.css'
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
-  type: 'button' | 'submit' | 'reset'
-  variant: 'btn-primary'
+  variant: 'btn-primary' | 'btn-danger'
 }
 
 const Button: FunctionComponent<ButtonProps> = ({ children, type, variant })  => {
