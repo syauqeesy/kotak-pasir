@@ -1,9 +1,9 @@
-.category {
+.category-item {
   border: 1px solid #ccc;
   margin-bottom: .1rem;
   padding: .5rem;
 }
 
-.category h2 {
+.category-item h2 {
   color: #333;
 }
