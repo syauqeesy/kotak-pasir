@@ -15,6 +15,9 @@ export const PostList: React.FC = () => {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "status",
@@ -44,7 +47,7 @@ export const PostList: React.FC = () => {
         [],
     );
 
-    const { getState,
+    const { getColumn,getState,
         setPageIndex,
         getCanPreviousPage,
         getPageCount,
@@ -75,8 +78,27 @@ export const PostList: React.FC = () => {
         },
     }));
 
+    const titleColumn = getColumn("title")
+
     return (
         <div className="container mx-auto pb-4">
+            <div className="mb-3 mt-1 flex items-center justify-between">
+                <div>
+                    <label className="mr-1" htmlFor="title">
+                        Title:
+                    </label>
+                    <input
+                        id="title"
+                        type="text"
+                        className="rounded border border-gray-200 p-1 text-gray-700"
+                        placeholder="Filter by title"
+                        value={(titleColumn.getFilterValue() as string) ?? ""}
+                        onChange={(event) =>
+                            titleColumn.setFilterValue(event.target.value)
+                        }
+                    />
+                </div>
+            </div>
             <table className="min-w-full table-fixed divide-y divide-gray-200 border">
                 <thead className="bg-gray-100">
                     {getHeaderGroups().map((headerGroup) => (
@@ -87,10 +109,20 @@ export const PostList: React.FC = () => {
                                     colSpan={header.colSpan}
                                     className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                                 >
-                                    {flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext(),
-                                    )}
+                                    <div
+                                        onClick={header.column.getToggleSortingHandler()}
+                                    >
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext(),
+                                        )}
+                                        {{
+                                            asc: " 🔼",
+                                            desc: " 🔽",
+                                        }[
+                                            header.column.getIsSorted() as string
+                                        ] ?? null}
+                                    </div>
                                 </th>
                             ))}
                         </tr>
