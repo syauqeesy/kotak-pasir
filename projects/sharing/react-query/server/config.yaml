@@ -1,0 +1,10 @@
+application:
+  address: ":1323"
+  base_url: "http://localhost:1323"
+  secret: "8ecqpr334sgimyox2x7n4mduaoo8ujin"
+database:
+  user: "root"
+  password: "sauki123"
+  host: "127.0.0.1"
+  port: "3306"
+  database: "article_app"
