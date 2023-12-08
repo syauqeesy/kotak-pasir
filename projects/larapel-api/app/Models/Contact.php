@@ -14,6 +14,8 @@ class Contact extends Model
     public $timestamps = true;
     public $increment = true;
 
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone'];
+
     public function contacts(): HasMany {
         return $this->hasMany(Address::class, 'contact_id', 'id');
     }
