@@ -210,8 +210,6 @@ class UserTest extends TestCase
     public function testUpdateFailed() {
         $this->seed([UserSeeder::class]);
 
-        $oldUser = User::where('username', 'testname')->first();
-
         $this->patch('/api/user/current', [
             'name' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at ligula in tellus ultricies scelerisque vitae a sapien. Nulla id lorem nec mi suscipit mollis vel a velit. Morbi vitae porttitor dolor, a elementum massa. Cras a diam et elit euismod ornare sed non elit. Etiam a purus sed est pretium vulputate ut id odio. Nunc molestie nisi scelerisque, interdum nisl quis, laoreet nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. In malesuada ligula ac arcu elementum faucibus. Vivamus aliquam metus nec laoreet congue. Integer dictum nunc sit amet sapien vehicula tristique. Donec aliquet ex in mi.'
         ], [
