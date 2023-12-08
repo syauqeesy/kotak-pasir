@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -51,6 +53,57 @@ class UserTest extends TestCase
                 'errors' => [
                     'username' => [
                         'Username already registered.',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testLoginSuccess() {
+        $this->seed([UserSeeder::class]);
+
+        $this->post('/api/user/login', [
+            'username' => 'testname',
+            'password' => 'testname123',
+        ])
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'name' => 'Test Name',
+                    'username' => 'testname',
+                ],
+            ]);
+
+        $user = User::where('username', 'testname')->first();
+
+        self::assertNotNull($user->token);
+    }
+
+    public function testLoginFailedUsernameWrong() {
+        $this->post('/api/user/login', [
+            'username' => 'testname',
+            'password' => 'testname123',
+        ])
+            ->assertStatus(401)
+            ->assertJson([
+                'errors' => [
+                    'message' => [
+                        'Username or password wrong.',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testLoginFailedPasswordWrong() {
+        $this->testRegisterSuccess();
+        $this->post('/api/user/login', [
+            'username' => 'testname',
+            'password' => 'testname12',
+        ])
+            ->assertStatus(401)
+            ->assertJson([
+                'errors' => [
+                    'message' => [
+                        'Username or password wrong.',
                     ],
                 ],
             ]);
