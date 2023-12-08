@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Contact;
+use Database\Seeders\ContactSeeder;
 use Tests\TestCase;
 use Database\Seeders\UserSeeder;
 
@@ -44,6 +46,57 @@ class ContactTest extends TestCase
             ->assertJson([
                 'errors' => [
                     'first_name' => ['The first name field is required.'],
+                ],
+            ]);
+    }
+
+    public function testGetSuccess() {
+        $this->seed([UserSeeder::class, ContactSeeder::class]);
+
+        $contact = Contact::query()->limit(1)->first();
+
+        $this->get(uri: '/api/contact/' . $contact->id, headers: [
+            'Authorization' => 'testtoken',
+        ])
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'first_name' => 'Test',
+                    'last_name' => 'Name',
+                    'email' => 'test@gmail.com',
+                    'phone' => '012912612',
+                ],
+            ]);
+    }
+
+    public function testGetFailedNotFound() {
+        $this->seed([UserSeeder::class, ContactSeeder::class]);
+
+        $contact = Contact::query()->limit(1)->first();
+
+        $this->get(uri: '/api/contact/' . $contact->id+1, headers: [
+            'Authorization' => 'testtoken',
+        ])
+            ->assertStatus(404)
+            ->assertJson([
+                'errors' => [
+                    'message' => ['Not found.'],
+                ],
+            ]);
+    }
+
+    public function testGetFailedOtherContact() {
+        $this->seed([UserSeeder::class, ContactSeeder::class]);
+
+        $contact = Contact::query()->limit(1)->first();
+
+        $this->get(uri: '/api/contact/' . $contact->id, headers: [
+            'Authorization' => 'testtoken2',
+        ])
+            ->assertStatus(404)
+            ->assertJson([
+                'errors' => [
+                    'message' => ['Not found.'],
                 ],
             ]);
     }
