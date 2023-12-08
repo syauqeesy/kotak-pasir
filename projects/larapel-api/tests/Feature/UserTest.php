@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
+use function PHPUnit\Framework\assertNotEquals;
+
 class UserTest extends TestCase
 {
     public function testRegisterSuccess() {
@@ -154,6 +156,72 @@ class UserTest extends TestCase
                 'errors' => [
                     'message' => [
                         'Unauthorized.',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testUpdateSuccessName() {
+        $this->seed([UserSeeder::class]);
+
+        $oldUser = User::where('username', 'testname')->first();
+
+        $this->patch('/api/user/current', [
+            'name' => 'Nama Baru'
+        ], [
+            'Authorization' => 'testtoken',
+        ])
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'name' => 'Nama Baru',
+                    'username' => 'testname',
+                ],
+            ]);
+
+        $newUser = User::where('username', 'testname')->first();
+
+        self:assertNotEquals($oldUser->name, $newUser->name);
+    }
+
+    public function testUpdateSuccessPassword() {
+        $this->seed([UserSeeder::class]);
+
+        $oldUser = User::where('username', 'testname')->first();
+
+        $this->patch('/api/user/current', [
+            'password' => 'passwordbaru'
+        ], [
+            'Authorization' => 'testtoken',
+        ])
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'name' => 'Test Name',
+                    'username' => 'testname',
+                ],
+            ]);
+
+        $newUser = User::where('username', 'testname')->first();
+
+        self:assertNotEquals($oldUser->password, $newUser->password);
+    }
+
+    public function testUpdateFailed() {
+        $this->seed([UserSeeder::class]);
+
+        $oldUser = User::where('username', 'testname')->first();
+
+        $this->patch('/api/user/current', [
+            'name' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at ligula in tellus ultricies scelerisque vitae a sapien. Nulla id lorem nec mi suscipit mollis vel a velit. Morbi vitae porttitor dolor, a elementum massa. Cras a diam et elit euismod ornare sed non elit. Etiam a purus sed est pretium vulputate ut id odio. Nunc molestie nisi scelerisque, interdum nisl quis, laoreet nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. In malesuada ligula ac arcu elementum faucibus. Vivamus aliquam metus nec laoreet congue. Integer dictum nunc sit amet sapien vehicula tristique. Donec aliquet ex in mi.'
+        ], [
+            'Authorization' => 'testtoken',
+        ])
+            ->assertStatus(400)
+            ->assertJson([
+                'errors' => [
+                    'name' => [
+                        'The name field must not be greater than 191 characters.',
                     ],
                 ],
             ]);
