@@ -79,8 +79,10 @@ class UserTest extends TestCase
     }
 
     public function testLoginFailedUsernameWrong() {
+        $this->seed([UserSeeder::class]);
+
         $this->post('/api/user/login', [
-            'username' => 'testname',
+            'username' => 'testnam',
             'password' => 'testname123',
         ])
             ->assertStatus(401)
@@ -94,7 +96,8 @@ class UserTest extends TestCase
     }
 
     public function testLoginFailedPasswordWrong() {
-        $this->testRegisterSuccess();
+        $this->seed([UserSeeder::class]);
+
         $this->post('/api/user/login', [
             'username' => 'testname',
             'password' => 'testname12',
@@ -104,6 +107,53 @@ class UserTest extends TestCase
                 'errors' => [
                     'message' => [
                         'Username or password wrong.',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testGetSuccess() {
+        $this->seed([UserSeeder::class]);
+
+        $this->get('/api/user/current', [
+            'Authorization' => 'testtoken',
+        ])
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'name' => 'Test Name',
+                    'username' => 'testname',
+                ],
+            ]);
+    }
+
+    public function testGetFailedUnauthorized() {
+        $this->seed([UserSeeder::class]);
+
+        $this->get('/api/user/current', [
+            'Authorization' => '',
+        ])
+            ->assertStatus(401)
+            ->assertJson([
+                'errors' => [
+                    'message' => [
+                        'Unauthorized.',
+                    ],
+                ],
+            ]);
+    }
+
+    public function testGetFailedInvalidToken() {
+        $this->seed([UserSeeder::class]);
+
+        $this->get('/api/user/current', [
+            'Authorization' => 'salahtoken',
+        ])
+            ->assertStatus(401)
+            ->assertJson([
+                'errors' => [
+                    'message' => [
+                        'Unauthorized.',
                     ],
                 ],
             ]);
