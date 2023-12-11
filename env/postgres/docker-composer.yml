@@ -1,0 +1,26 @@
+services:
+  postgres:
+    container_name: postgres_docker_instance
+    restart: always
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "sauki123"
+    volumes:
+      - postgres-data:/var/lib/postgres
+  pgadmin:
+    container_name: pgadmin_docker_instance
+    restart: always
+    image: dpage/pgadmin4
+    ports:
+      - 8081:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "syauqeesy@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "sauki123"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+volumes:
+  postgres-data:
+  pgadmin-data:
