@@ -1,0 +1,7 @@
+services:
+  nginx:
+    container_name: nginx_docker_instance
+    restart: always
+    build: .
+    ports:
+      - 80:80
