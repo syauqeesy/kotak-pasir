@@ -16,7 +16,8 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    public function register(UserRegisterRequest $request): JsonResponse {
+    public function register(UserRegisterRequest $request): JsonResponse
+    {
         $data = $request->validated();
 
         if (User::where('username', $data['username'])->count() == 1) {
@@ -36,7 +37,8 @@ class UserController extends Controller
         return (new UserResource($user))->response()->setStatusCode(201);
     }
 
-    public function login(UserLoginRequest $request): JsonResponse {
+    public function login(UserLoginRequest $request): JsonResponse
+    {
         $data = $request->validated();
 
         $user = User::where('username', $data['username'])->first();
@@ -57,13 +59,30 @@ class UserController extends Controller
         return (new UserResource($user))->response();
     }
 
-    public function get(Request $request): UserResource {
+    public function get(Request $request): UserResource
+    {
         $user = Auth::user();
 
         return new UserResource($user);
     }
 
-    public function update(UserUpdateRequest $request): UserResource {
+    /**
+     * @OA\Info(
+     *     description="Contoh API doc menggunakan OpenAPI/Swagger",
+     *     version="1.0.0",
+     *     title="Contoh API documentation",
+     *     termsOfService="http://swagger.io/terms/",
+     *     @OA\Contact(
+     *         email="djiwandou@gmail.com"
+     *     ),
+     *     @OA\License(
+     *         name="Apache 2.0",
+     *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
+     *     )
+     * )
+     */
+    public function update(UserUpdateRequest $request): UserResource
+    {
         $data = $request->validated();
 
         $user = Auth::user();
@@ -80,7 +99,8 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function logout(): JsonResponse {
+    public function logout(): JsonResponse
+    {
         $user = Auth::user();
         $user->token = null;
         $user->save();

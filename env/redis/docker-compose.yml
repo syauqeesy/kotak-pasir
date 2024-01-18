@@ -1,0 +1,11 @@
+services:
+  redis:
+    container_name: redis_docker_instance
+    restart: always
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/var/lib/redis
+volumes:
+  redis-data:

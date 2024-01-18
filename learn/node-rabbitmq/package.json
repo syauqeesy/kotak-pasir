@@ -1,0 +1,22 @@
+{
+  "name": "node-rabbitmq",
+  "version": "1.0.0",
+  "description": "Message Broker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syauqeesy/kotak-pasir.git"
+  },
+  "author": "Ahmad Syauqi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syauqeesy/kotak-pasir/issues"
+  },
+  "homepage": "https://github.com/syauqeesy/kotak-pasir#readme",
+  "dependencies": {
+    "amqplib": "^0.10.3"
+  }
+}
