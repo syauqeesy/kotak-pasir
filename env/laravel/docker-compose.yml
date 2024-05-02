@@ -1,0 +1,24 @@
+services:
+  laravel:
+    container_name: laravel_docker_instance
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    networks:
+      - application-network
+  nginx:
+    container_name: nginx_docker_instance
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - laravel
+    networks:
+      - application-network
+networks:
+  application-network:
+    driver: bridge
